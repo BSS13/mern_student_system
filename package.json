@@ -1,0 +1,32 @@
+{
+  "name": "mern_student_maintain",
+  "version": "1.0.0",
+  "description": "MERN stack based Student Management ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BSS13/mern_student_system.git"
+  },
+  "author": "Balpreet Singh Sandhu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BSS13/mern_student_system/issues"
+  },
+  "homepage": "https://github.com/BSS13/mern_student_system#readme",
+  "dependencies": {
+    "concurrently": "^5.0.0",
+    "config": "^3.2.4",
+    "express": "^4.17.1",
+    "mongoose": "^5.7.11"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  }
+}
