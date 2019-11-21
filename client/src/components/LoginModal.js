@@ -30,7 +30,7 @@ class LoginModal extends Component{
                 <NavLink onClick={this.toggle} href="#">Login</NavLink>
                 
                     <Modal isOpen={this.state.modal} toggle={this.toggle} style={loginModal}>
-                    <ModalHeader toggle={this.toggle} style={{backgroundColor:'#3d70b2',color:'#dfe3e6',textAlign:'right',marginBottom:'8px'}}><span style={{textAlign:'center',display:'block',margin:'auto',textSize:'32px',padding:'4px'}}>Login</span></ModalHeader>
+                    <ModalHeader toggle={this.toggle} style={{backgroundColor:'#3d70b2',color:'#dfe3e6',textAlign:'right',marginBottom:'8px'}}><span style={{textAlign:'center',display:'block',margin:'auto',padding:'4px'}}>Login</span></ModalHeader>
 
                     <ModalBody>
                         <img src={LoginModalLogo} alt="Login" width="150px" height="150px" style={loginLogo}/>
