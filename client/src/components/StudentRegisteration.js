@@ -19,12 +19,17 @@ class StudentRegisteration extends Component
         this.setState({[e.target.name]:e.target.value});
     }
 
+    onSubmit=e=>{
+        e.preventDefault();
+        
+    }
+
 
     render()
     {
         return(
             <div>
-                <Form style={formStyling}>
+                <Form onSubmit={this.onSubmit} style={formStyling}>
                     <FormGroup>
                        <Input type="file" name="photograph" id="photograph" placeholder="Upload Image" onChange={this.onChange} style={inputStyle}/>
                     </FormGroup>
