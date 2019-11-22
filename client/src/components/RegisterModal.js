@@ -25,6 +25,7 @@ class RegisterModal extends Component{
         return(
             <div>
                 <NavLink onClick={this.toggle} href="#">Register</NavLink>
+                
                 <Modal isOpen={this.state.modal} toggle={this.toggle} style={registerModal}>
                     <ModalHeader toggle={this.toggle} style={{textAlign:'right',marginBottom:'8px',backgroundColor:'#3d70b2',color:'#dfe3e6'}}>
                        <span style={{display:'block',margin:'auto',textAlign:'center'}}>Register</span>
