@@ -2,6 +2,7 @@
 import React,{Component} from 'react';
 import RegisterModal from './RegisterModal';
 import LoginModal from './LoginModal';
+import WebsiteLogo from '../images/websitelogo.png';
 
 class Navbar extends Component
 {
@@ -9,7 +10,7 @@ class Navbar extends Component
     {
         return(
             <div>
-            <h1>Hello</h1>
+            <img src={WebsiteLogo} width="100px" height="100px" alt="websiteLogo"/>
             <RegisterModal/>
             <LoginModal/>
             </div>
