@@ -12,6 +12,7 @@ app.use(express.urlencoded({extended:false}));
 
 //Use the routes
 app.use("/api/users",require('./routes/api/users'));
+app.use("/api/students",require('./routes/api/students'));
 
 app.get("/",(req,res)=>{
     res.send("<h1>Hello Server is Running </h1>");
