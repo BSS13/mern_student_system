@@ -1,18 +1,19 @@
 import React,{Component} from 'react';
 import {Form,FormGroup,Input,Button} from 'reactstrap';
+import Axios from 'axios';
 
 class StudentRegisteration extends Component
 {
     state={
-        photograph:'',
-        rollnumber:'',
+        rollno:'',
         name:'',
         Fathername:'',
         Mothername:'',
         DOB:'',
-        address:'',
         Class:'',
-        contactdetails:''
+        address:'',
+        contact:'',
+        msg:null
     }
 
     onChange=e=>{
@@ -21,7 +22,27 @@ class StudentRegisteration extends Component
 
     onSubmit=e=>{
         e.preventDefault();
-        
+
+        //Fetch the Required Fields
+        const {rollno,name,Fathername,Mothername,DOB,Class,address,contact}=this.state;
+
+        Axios.post("http://localhost:5000/api/students",{
+            rollno,
+            name,
+            Fathername,
+            Mothername,
+            DOB,
+            Class,
+            address,
+            contact
+        })
+        .then(res=>{
+            console.log(res);
+        })
+        .catch(err=>{
+            if(err)
+            console.log(err);
+        })
     }
 
 
@@ -30,12 +51,9 @@ class StudentRegisteration extends Component
         return(
             <div>
                 <Form onSubmit={this.onSubmit} style={formStyling}>
+                    
                     <FormGroup>
-                       <Input type="file" name="photograph" id="photograph" placeholder="Upload Image" onChange={this.onChange} style={inputStyle}/>
-                    </FormGroup>
-
-                    <FormGroup>
-                        <Input type="text" name="rollnumber" id="rollnumber" placeholder="Roll Number" onChange={this.onChange} style={inputStyle}/>
+                        <Input type="text" name="rollno" id="rollno" placeholder="Roll Number" onChange={this.onChange} style={inputStyle}/>
                     </FormGroup>
 
                     <FormGroup>
@@ -55,15 +73,15 @@ class StudentRegisteration extends Component
                     </FormGroup>
 
                     <FormGroup>
-                        <Input type="text" name="address" id="address" placeholder="Address" onChange={this.onChange} style={inputStyle}/>
+                        <Input type="text" name="Class" id="Class" placeholder="Class" onChange={this.onChange} style={inputStyle}/>
                     </FormGroup>
 
                     <FormGroup>
-                        <Input type="text" name="Class"id="Class" placeholder="Class" onChange={this.onChange} style={inputStyle}/>
+                        <Input type="text" name="address"id="address" placeholder="address" onChange={this.onChange} style={inputStyle}/>
                     </FormGroup>
 
                     <FormGroup>
-                        <Input type="text" name="contactdetails" id="contactdetails" placeholder="Contact Detail" onChange={this.onChange} style={inputStyle}/>
+                        <Input type="text" name="contact" id="contact" placeholder="Contact Detail" onChange={this.onChange} style={inputStyle}/>
                     </FormGroup>
 
                     <Button style={buttonStyle}>Complete Registeration</Button>

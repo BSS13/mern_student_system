@@ -9,7 +9,6 @@ class StudentList extends Component{
                <Table style={{width:'90%',margin:'auto',marginTop:'20px'}}>
                    <thead style={{backgroundColor:'#3d70b2',color:'#dfe3e6'}}>
                        <tr>
-                           <th>Photograph</th>
                            <th>Roll Number</th>
                            <th>Name</th>
                            <th>Father Name</th>

@@ -2,10 +2,13 @@ const express=require('express');
 const mongoose=require('mongoose');
 const config=require('config');
 const path=require('path');
+const cors=require('cors');
 //Using config to fetch the mongo URI and use of '' to fetch the value rather than normal variable value fetch
 const db=config.get('mongoURI');
 
+
 const app=express();
+app.use(cors());
 //Required Middleware to handle for the form submission and url data handling 
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
@@ -13,6 +16,7 @@ app.use(express.urlencoded({extended:false}));
 //Use the routes
 app.use("/api/users",require('./routes/api/users'));
 app.use("/api/students",require('./routes/api/students'));
+
 
 app.get("/",(req,res)=>{
     res.send("<h1>Hello Server is Running </h1>");
