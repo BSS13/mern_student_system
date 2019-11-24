@@ -3,6 +3,12 @@ const express=require("express");
 const router=express.Router();
 const Student=require('../../modals/Students');
 
+//Route to fetch the students which will be rendered to show the list as table in the Student List Component
+router.get("/",(req,res)=>{
+  Student.find().then(students=>{return res.json(students)});
+});
+
+//Route to handle the post requests that complete the Registeration
 router.post("/",(req,res)=>{
     const {rollno,name,Fathername,Mothername,DOB,Class,address,contact}=req.body;
 
@@ -28,7 +34,7 @@ router.post("/",(req,res)=>{
 
         newStudent.save()
         .then(student=>{
-            return res.status(400).json({msg:'Student Regsitered Successfully with Details:'+student});
+            return res.status(400).json({msg:'Student Registered Successfully with Details:'+student});
         })
     })
 })

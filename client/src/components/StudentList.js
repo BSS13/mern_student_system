@@ -1,7 +1,29 @@
 import React,{Component} from 'react';
 import {Table} from 'reactstrap';
+import Axios from 'axios';
 
 class StudentList extends Component{
+
+    componentDidMount()
+    {
+        let tbodyRow='';
+        Axios.get("http://localhost:5000/api/students")
+        .then(res=>{
+            res.data.forEach(student => {
+                tbodyRow+='<tr>';
+                tbodyRow+='<td>'+student.rollno+'</td>';
+                tbodyRow+='<td>'+student.name+'</td>';
+                tbodyRow+='<td>'+student.Fathername+'</td>';
+                tbodyRow+='<td>'+student.Mothername+'</td>';
+                tbodyRow+='<td>'+student.DOB+'</td>';
+                tbodyRow+='<td>'+student.Class+'</td>';
+                tbodyRow+='<td>'+student.address+'</td>';
+                tbodyRow+='<td>'+student.contact+'</td>';
+                tbodyRow+='</tr>'
+            });
+            document.getElementById("studentList").innerHTML=tbodyRow;
+        });
+    }
     render()
     {
         return(
@@ -20,7 +42,7 @@ class StudentList extends Component{
                        </tr>
                    </thead>
 
-                   <tbody>
+                   <tbody id="studentList">
 
                    </tbody>
                </Table>
