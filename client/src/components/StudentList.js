@@ -28,6 +28,7 @@ class StudentList extends Component{
     {
         return(
             <div>
+                <h2 style={{color:'#3d70b2',textAlign:'center'}}>List of Registered Students</h2>
                <Table style={{width:'90%',margin:'auto',marginTop:'20px'}}>
                    <thead style={{backgroundColor:'#3d70b2',color:'#dfe3e6'}}>
                        <tr>

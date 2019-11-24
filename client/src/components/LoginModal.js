@@ -39,11 +39,13 @@ class LoginModal extends Component{
 
                         <Form onSubmit={this.onSubmit}>
                              <FormGroup>
+                                 <Label for="email" style={inputStyle}>Email</Label>
                                 <Input type="email" name="email" id="email" placeholder="Email" onChange={this.onChange} style={inputStyle}/>
                             </FormGroup>
 
 
                             <FormGroup>
+                                <Label for="password" style={inputStyle}>Password</Label>
                                 <Input type="password" name="password" id="password" placeholder="Password" onChange={this.onChange} style={inputStyle}/>
                            </FormGroup>
    

@@ -35,18 +35,22 @@ class RegisterModal extends Component{
                         <img src={RegisterModalLogo} width="150px" height="150px" alt="Register Modal" style={registerLogo}></img>
                         <Form>
                            <FormGroup>
+                               <Label for="username" style={inputStyle}>Username</Label>
                                <Input type="text" name="username" id="username" placeholder="Username" onChange={this.onChange} style={inputStyle}/>
                             </FormGroup>
 
                             <FormGroup>
+                                <Label for="email" style={inputStyle}>Email</Label>
                                <Input type="text" name="email" id="email" placeholder="Email" onChange={this.onChange} style={inputStyle}/>
                            </FormGroup>
                             
                            <FormGroup>
+                               <Label for="password" style={inputStyle}>Password</Label>
                                <Input type="password" name="password" id="password" placeholder="Password" onChange={this.onChange} style={inputStyle}/>
                             </FormGroup> 
 
                             <FormGroup>
+                               <Label for="cpassword" style={inputStyle}>Confirm Password</Label>
                                <Input type="password" name="cpassword" id="cpassword" placeholder="Confirm Password" onChange={this.onChange} style={inputStyle}/>
                             </FormGroup>
    
