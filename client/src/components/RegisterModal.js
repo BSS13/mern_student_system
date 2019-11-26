@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import {Modal,ModalHeader,ModalBody,Button,Input,Label,Alert,Form,FormGroup,NavLink} from 'reactstrap';
 import RegisterModalLogo from '../images/registerUser.png';
+import Axios from 'axios';
 
 class RegisterModal extends Component{
     
@@ -21,6 +22,23 @@ class RegisterModal extends Component{
         this.setState({[e.target.name]:e.target.value});
     }
 
+    onSubmit=()=>{
+       const {username,email,password,cpassword}=this.state;
+
+       Axios.post("http://localhost:5000/api/users",{
+           username,
+           email,
+           password,
+           cpassword
+       })
+       .then(res=>{
+           console.log(res);
+       })
+       .catch(err=>{
+           console.log(err);
+       })
+    }
+
     render(){
         return(
             <div>
@@ -33,7 +51,7 @@ class RegisterModal extends Component{
 
                     <ModalBody>
                         <img src={RegisterModalLogo} width="150px" height="150px" alt="Register Modal" style={registerLogo}></img>
-                        <Form>
+                        <Form onSubmit={this.onSubmit}>
                            <FormGroup>
                                <Label for="username" style={inputStyle}>Username</Label>
                                <Input type="text" name="username" id="username" placeholder="Username" onChange={this.onChange} style={inputStyle}/>
