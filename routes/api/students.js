@@ -34,7 +34,7 @@ router.post("/",(req,res)=>{
 
         newStudent.save()
         .then(student=>{
-            return res.status(400).json({msg:'Student Registered Successfully with Details:'+student});
+            return res.json({msg:'Student Registered Successfully with Details:'+student});
         })
     })
 })

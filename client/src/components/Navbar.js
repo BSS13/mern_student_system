@@ -12,7 +12,7 @@ class Navbar extends Component
         return(
             <div className="jumbotron" style={mainHeaderStyle}>
             <Nav>
-            <img src={WebsiteLogo} width="100px" height="100px" alt="websiteLogo"/>
+            <img src={WebsiteLogo} width="250px" height="250px" alt="websiteLogo"/>
             <NavItem>
               <RegisterModal/>
             </NavItem>

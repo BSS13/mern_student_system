@@ -37,7 +37,7 @@ class StudentRegisteration extends Component
             contact
         })
         .then(res=>{
-            this.state.msg=res.data;
+            this.state.msg=res.data.msg;
         })
         .catch(err=>{
             if(err)
