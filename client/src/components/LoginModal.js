@@ -1,6 +1,8 @@
 import React,{Component} from 'react';
 import {Form,FormGroup,Input,Label,Modal,ModalHeader,ModalBody,NavLink,Button} from 'reactstrap';
 import LoginModalLogo from '../images/login.png';
+import Axios from 'axios';
+
 class LoginModal extends Component{
 
     state={
@@ -20,7 +22,20 @@ class LoginModal extends Component{
 
     onSubmit=e=>{
         e.preventDefault();
-        this.toggle();
+        
+        const {email,password}=this.state;
+
+        Axios.post("http://localhost:5000/api/users/login",{
+            email,
+            password
+        })
+        .then(res=>{
+            document.getElementById("msg").innerHTML=res.data.msg;
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+
     }
 
 
@@ -38,6 +53,7 @@ class LoginModal extends Component{
                             
 
                         <Form onSubmit={this.onSubmit}>
+                            <span id="msg"></span>
                              <FormGroup>
                                  <Label for="email" style={inputStyle}>Email</Label>
                                 <Input type="email" name="email" id="email" placeholder="Email" onChange={this.onChange} style={inputStyle}/>

@@ -35,8 +35,28 @@ router.post("/",(req,res)=>{
         })
     })
 
-
-
 });
+
+
+//Route for the Login
+router.post("/login",(req,res)=>{
+    const {email,password}=req.body;
+
+    //Check for empty
+    if(!email || !password){
+        return res.status(400).json({msg:'Please Enter Complete Details'});
+    }
+
+    User.findOne({email:email})
+    .then(user=>{
+        if(user==null) return res.status(400).json({msg:'No Such Record Exists'});
+
+        if(user.password!==password){
+            return res.status(400).json({msg:'Password Does not Match'});
+        }
+
+        return res.status(200).json({msg:`Welcome! ${user.username} you have successfully logged in`});
+    })
+})
 
 module.exports=router;
