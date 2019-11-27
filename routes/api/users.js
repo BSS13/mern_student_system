@@ -5,6 +5,15 @@ const User=require('../../modals/Users');
 const bcrypt=require('bcryptjs');
 const jwt=require('jsonwebtoken');
 const config=require('config');
+const auth=require('../middleware/auth');
+
+//Route to fetch the details of the user involving use of Middleware
+router.get("/user",auth,(req,res)=>{
+    User.findById(req.user.id)
+    .select("-password")
+    .select("-cpassword")
+    .then(user=>res.json(user));
+})
 
 //Route for the Registeration
 router.post("/",(req,res)=>{
@@ -110,5 +119,7 @@ router.post("/login",(req,res)=>{
 
     })
 })
+
+
 
 module.exports=router;
