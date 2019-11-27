@@ -82,11 +82,32 @@ router.post("/login",(req,res)=>{
     .then(user=>{
         if(user==null) return res.status(400).json({msg:'No Such Record Exists'});
 
-        if(user.password!==password){
-            return res.status(400).json({msg:'Password Does not Match'});
-        }
 
-        return res.status(200).json({msg:`Welcome! ${user.username} you have successfully logged in`});
+        //Code modified for encrypted password check when logging in 
+
+        bcrypt.compare(password,user.password)
+        .then(isMatch=>{
+            if(!isMatch) return res.status(400).json({msg:'Sorry! Your password does not match'});
+            
+            jwt.sign(
+                {id:user.id},
+                config.get('jwtSecret'),
+                {expiresIn:7200},
+                (err,token)=>{
+                    if(err) throw err;
+
+                    res.json(({
+                       token,
+                       user:{
+                           id:user.id,
+                           name:user.username,
+                           email:user.email
+                       } 
+                    }))
+                }
+            )
+        })
+
     })
 })
 
