@@ -2,7 +2,11 @@
 const express=require('express');
 const router=express.Router();
 const User=require('../../modals/Users');
+const bcrypt=require('bcryptjs');
+const jwt=require('jsonwebtoken');
+const config=require('config');
 
+//Route for the Registeration
 router.post("/",(req,res)=>{
     const {username,email,password,cpassword}=req.body;
 
@@ -28,11 +32,38 @@ router.post("/",(req,res)=>{
             password,
             cpassword
         });
+ 
+        //Generate a encrypted password
+        bcrypt.genSalt(10,(err,salt)=>{
+            bcrypt.hash(newUser.password,salt,(err,hash)=>{
+                if(err) throw err;
+                newUser.password=hash;
 
-        newUser.save()
-        .then(user=>{
-            return res.status(200).json({msg:`User registered with the details: ${user}`});
+                newUser.save()
+                .then(user=>{
+
+                    //Create a token when User successfully registers
+                    jwt.sign(
+                        {id:user.id},
+                        config.get('jwtSecret'),
+                        {expiresIn:7200},
+                        (err,token)=>{
+                            if(err) throw err;
+
+                            res.json({
+                                token:token,
+                                user:{
+                                    id:user.id,
+                                    name:user.username,
+                                    email:user.email
+                                }
+                            });
+                        }
+                    )
+                })
+            })
         })
+        
     })
 
 });
