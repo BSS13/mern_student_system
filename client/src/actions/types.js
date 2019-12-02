@@ -12,3 +12,5 @@ export const CLEAR_ERRORS='CLEAR_ERRORS';
 
 //For the User Data Fetch and Operatios
 export const GET_STUDENTS='GET_STUDENTS';
+export const STUDENTS_LOADING='STUDENTS_LOADING';
+export const STUDENTS_LOADED='STUDENTS_LOADED';

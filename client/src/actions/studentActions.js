@@ -1,9 +1,10 @@
-import {GET_STUDENTS} from './types';
+import {GET_STUDENTS, STUDENTS_LOADING} from './types';
 import Axios from 'axios';
 
 export const getStudents = () => dispatch =>{
-    let tbodyRow='';
-
+   
+    dispatch(setStudentsLoading());
+    
     Axios.get("http://localhost:5000/api/students")
     .then(res=>dispatch({
         type:GET_STUDENTS,
@@ -11,4 +12,10 @@ export const getStudents = () => dispatch =>{
     })
     )
     .catch(err=>{console.log(err)});
+}
+
+export const setStudentsLoading=()=>{
+    return{
+        type:STUDENTS_LOADING
+    }
 }

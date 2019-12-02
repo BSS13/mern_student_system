@@ -12,6 +12,10 @@ class StudentList extends Component{
     }
     render()
     {
+        const {student_list}=this.props.student;
+
+
+        
         return(
             <div>
                 <h2 style={{color:'#3d70b2',textAlign:'center'}}>List of Registered Students</h2>
@@ -28,9 +32,9 @@ class StudentList extends Component{
                            <th>Contact Details</th>
                        </tr>
                    </thead>
-
+                      
                    <tbody id="studentList">
-
+                      
                    </tbody>
                </Table>
             </div>
