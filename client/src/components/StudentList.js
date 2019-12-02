@@ -1,28 +1,14 @@
 import React,{Component} from 'react';
 import {Table} from 'reactstrap';
 import Axios from 'axios';
+import {connect} from 'react-redux';
+import {getStudents} from '../actions/studentActions';
 
 class StudentList extends Component{
 
     componentDidMount()
     {
-        let tbodyRow='';
-        Axios.get("http://localhost:5000/api/students")
-        .then(res=>{
-            res.data.forEach(student => {
-                tbodyRow+='<tr>';
-                tbodyRow+='<td>'+student.rollno+'</td>';
-                tbodyRow+='<td>'+student.name+'</td>';
-                tbodyRow+='<td>'+student.Fathername+'</td>';
-                tbodyRow+='<td>'+student.Mothername+'</td>';
-                tbodyRow+='<td>'+student.DOB+'</td>';
-                tbodyRow+='<td>'+student.Class+'</td>';
-                tbodyRow+='<td>'+student.address+'</td>';
-                tbodyRow+='<td>'+student.contact+'</td>';
-                tbodyRow+='</tr>'
-            });
-            document.getElementById("studentList").innerHTML=tbodyRow;
-        });
+        this.props.getStudents();
     }
     render()
     {
@@ -52,4 +38,8 @@ class StudentList extends Component{
     }
 }
 
-export default StudentList;
+const mapStateToProps=state=>({
+    student:state.student
+})
+
+export default connect(mapStateToProps,{getStudents})(StudentList);
