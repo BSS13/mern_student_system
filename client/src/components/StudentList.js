@@ -1,6 +1,5 @@
 import React,{Component} from 'react';
-import {Table} from 'reactstrap';
-import Axios from 'axios';
+import {Table,Button} from 'reactstrap';
 import {connect} from 'react-redux';
 import {getStudents} from '../actions/studentActions';
 
@@ -30,11 +29,26 @@ class StudentList extends Component{
                            <th>Class</th>
                            <th>Address</th>
                            <th>Contact Details</th>
+                           <th>Edit</th>
+                           <th>Delete</th>
                        </tr>
                    </thead>
                       
                    <tbody id="studentList">
-                      
+                      {student_list.map(student=>(
+                          <tr>
+                              <td>{student.rollno}</td>
+                              <td>{student.name}</td>
+                              <td>{student.Fathername}</td>
+                              <td>{student.Mothername}</td>
+                              <td>{student.DOB}</td>
+                              <td>{student.Class}</td>
+                              <td>{student.address}</td>
+                              <td>{student.contact}</td>
+                              <td><Button color="warning">Edit</Button></td>
+                              <td><Button color="danger">Delete</Button></td>
+                          </tr>
+                      ))}
                    </tbody>
                </Table>
             </div>
