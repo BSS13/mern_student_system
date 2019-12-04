@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import {Table,Button} from 'reactstrap';
 import {connect} from 'react-redux';
 import {getStudents} from '../actions/studentActions';
+import EditStudentModal from './EditStudentModal';
 
 class StudentList extends Component{
 
@@ -45,7 +46,7 @@ class StudentList extends Component{
                               <td>{student.Class}</td>
                               <td>{student.address}</td>
                               <td>{student.contact}</td>
-                              <td><Button color="warning">Edit</Button></td>
+                              <td><EditStudentModal/></td>
                               <td><Button color="danger">Delete</Button></td>
                           </tr>
                       ))}
