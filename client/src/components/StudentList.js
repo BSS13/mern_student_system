@@ -10,12 +10,14 @@ class StudentList extends Component{
     {
         this.props.getStudents();
     }
+
+    deleteRecord= (srollno) =>{
+       console.log(srollno);
+    }
     render()
     {
         const {student_list}=this.props.student;
 
-
-        
         return(
             <div>
                 <h2 style={{color:'#3d70b2',textAlign:'center'}}>List of Registered Students</h2>
@@ -47,7 +49,7 @@ class StudentList extends Component{
                               <td>{student.address}</td>
                               <td>{student.contact}</td>
                               <td><EditStudentModal/></td>
-                              <td><Button color="danger">Delete</Button></td>
+                              <td><Button color="danger" onClick={this.deleteRecord}>Delete</Button></td>
                           </tr>
                       ))}
                    </tbody>

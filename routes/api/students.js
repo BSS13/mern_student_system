@@ -39,4 +39,14 @@ router.post("/",(req,res)=>{
     })
 })
 
+//TO handle the delete request
+router.delete("/",(req,res)=>{
+    const {id}=req.body.id;
+
+    Student.deleteOne({rollno:id})
+    .save();
+
+    
+})
+
 module.exports=router;
