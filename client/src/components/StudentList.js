@@ -3,6 +3,7 @@ import {Table,Button} from 'reactstrap';
 import {connect} from 'react-redux';
 import {getStudents} from '../actions/studentActions';
 import EditStudentModal from './EditStudentModal';
+import Axios from 'axios';
 
 class StudentList extends Component{
 
@@ -12,8 +13,12 @@ class StudentList extends Component{
     }
 
     deleteRecord= (srollno) =>{
-       console.log(srollno);
+       Axios.delete("http://localhost:5000/api/students",{
+           srollno
+       })
+       .then(res=>console.log(res));
     }
+    
     render()
     {
         const {student_list}=this.props.student;
@@ -49,7 +54,7 @@ class StudentList extends Component{
                               <td>{student.address}</td>
                               <td>{student.contact}</td>
                               <td><EditStudentModal/></td>
-                              <td><Button color="danger" onClick={this.deleteRecord}>Delete</Button></td>
+                              <td><Button color="danger" onClick={this.deleteRecord.bind(this,student.rollno)}>Delete</Button></td>
                           </tr>
                       ))}
                    </tbody>

@@ -41,12 +41,12 @@ router.post("/",(req,res)=>{
 
 //TO handle the delete request
 router.delete("/",(req,res)=>{
-    const {id}=req.body.id;
-
-    Student.deleteOne({rollno:id})
-    .save();
-
     
+    const {rollno}=req.body.srollno;
+    Student.findOne(rollno)
+    .then(student=>student.remove().then(()=>res.json({msg:'Successfully Deleted'})))
+    .catch(err=>res.status(404).json({success:false}))
+
 })
 
 module.exports=router;
