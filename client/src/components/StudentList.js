@@ -12,11 +12,14 @@ class StudentList extends Component{
         this.props.getStudents();
     }
 
-    deleteRecord= (srollno) =>{
-       Axios.delete("http://localhost:5000/api/students",{
-           srollno
+    deleteRecord= (rollno) =>{
+        console.log(rollno+"is getting deleted");
+      
+        Axios.delete(`http://localhost:5000/api/students/${rollno}`)
+       .then(res=>{
+           console.log(res.data.msg);
        })
-       .then(res=>console.log(res));
+       .catch(err=>{console.log(err)});
     }
     
     render()

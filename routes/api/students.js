@@ -40,11 +40,15 @@ router.post("/",(req,res)=>{
 })
 
 //TO handle the delete request
-router.delete("/",(req,res)=>{
+router.delete("/:rollno",(req,res)=>{
     
-    const {rollno}=req.body.srollno;
-    Student.findOne(rollno)
-    .then(student=>student.remove().then(()=>res.json({msg:'Successfully Deleted'})))
+     res.status(200).json({msg:`Roll Number ${req.params.rollno} is received`});
+    
+     Student.findOne({rollno:req.params.rollno})
+     .then(student=>student
+        .remove()
+        .then(()=>res.json({msg:`Successfully Deleted ${req.params.rollno}`}))
+        .catch(err=>res.status(404).json({msg:'Erro in Query Execution'})))
     .catch(err=>res.status(404).json({success:false}))
 
 })
