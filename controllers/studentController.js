@@ -1,6 +1,3 @@
-import React from 'react';
-
-
 //Function to get all students
 const getAllStudents = (req,res)=>{
     Student.find().then(students=>{return res.json(students)});

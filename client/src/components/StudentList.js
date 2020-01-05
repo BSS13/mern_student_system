@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {getStudents} from '../actions/studentActions';
 import EditStudentModal from './EditStudentModal';
 import Axios from 'axios';
+import {Link} from 'react-router-dom';
 
 class StudentList extends Component{
 
@@ -56,7 +57,7 @@ class StudentList extends Component{
                               <td>{student.Class}</td>
                               <td>{student.address}</td>
                               <td>{student.contact}</td>
-                              <td><EditStudentModal/></td>
+                              <td><Button>Edit </Button></td>
                               <td><Button color="danger" onClick={this.deleteRecord.bind(this,student.rollno)}>Delete</Button></td>
                           </tr>
                       ))}

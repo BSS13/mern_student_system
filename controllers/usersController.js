@@ -1,5 +1,3 @@
-import React from 'react';
-
 const getUser = (req,res)=>{
     User.findById(req.user.id)
     .select("-password")
