@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import {connect} from 'react-redux';
 import {Modal,ModalHeader,ModalBody,Form,Input,FormGroup,Label,Button} from 'reactstrap';
 
 class EditStudentModal extends Component{
@@ -81,4 +82,8 @@ const inputStyle={
    padding:'8px'
 };
 
-export default EditStudentModal;
+const mapStateToProps = state =>({
+    student:state.student
+})
+
+export default connect(mapStateToProps,{})(EditStudentModal);
