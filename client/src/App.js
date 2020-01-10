@@ -1,17 +1,16 @@
 import React,{Component} from 'react';
-import Navbar from './components/Navbar';
-import StudentRegisteration from './components/StudentRegisteration';
-import StudentList from './components/StudentList';
-import {BrowserRouter as Router,Route} from 'react-router-dom';
+import StudentList from './components/Students/pages/StudentList';
+import {BrowserRouter as Router,Route,Switch,Redirect} from 'react-router-dom';
 
 const App = () => {
     return(
           <Router>     
-           <div>
-           <Navbar/>
-            <StudentRegisteration/>
-            <StudentList/>
-          </div>
+           
+            <Switch>
+              <Route path="/" exact><StudentList/></Route>
+              
+              <Redirect to="/"/>
+            </Switch>
         </Router>
     )
   

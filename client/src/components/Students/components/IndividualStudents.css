@@ -1,0 +1,11 @@
+.container{
+    display: flex;
+}
+
+.image_container{
+     flex:30%;
+}
+
+.details_container{
+    flex:70%;
+}
