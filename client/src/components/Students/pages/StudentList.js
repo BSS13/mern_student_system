@@ -1,35 +1,18 @@
-import React,{Component} from 'react';
+import React,{useState,useEffect} from 'react';
 import {Table,Button} from 'reactstrap';
-import {connect} from 'react-redux';
-import {getStudents} from '../actions/studentActions';
-import EditStudentModal from './EditStudentModal';
-import Axios from 'axios';
-import {Link} from 'react-router-dom';
+import individualStudents from './individualStudents';
 
-class StudentList extends Component{
+const StudentList = () =>{
+     
+    const [studentList,setStudentList] = useState();
+    const [isLoading,setIsLoading] = useState();
 
-    componentDidMount()
-    {
-        this.props.getStudents();
-    }
 
-    deleteRecord= (rollno) =>{
-        console.log(rollno+"is getting deleted");
-      
-        Axios.delete(`http://localhost:5000/api/students/${rollno}`)
-       .then(res=>{
-           console.log(res.data.msg);
-       })
-       .catch(err=>{console.log(err)});
-    }
-    
-    render()
-    {
-        const {student_list}=this.props.student;
 
-        return(
+    return(
             <div>
                 <h2 style={{color:'#3d70b2',textAlign:'center'}}>List of Registered Students</h2>
+                <individualStudents students={studentList}/>
                <Table style={{width:'90%',margin:'auto',marginTop:'20px'}}>
                    <thead style={{backgroundColor:'#3d70b2',color:'#dfe3e6'}}>
                        <tr>
@@ -66,10 +49,4 @@ class StudentList extends Component{
             </div>
         )
     }
-}
-
-const mapStateToProps=state=>({
-    student:state.student
-})
-
-export default connect(mapStateToProps,{getStudents})(StudentList);
+export default StudentList;
