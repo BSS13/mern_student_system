@@ -1,0 +1,13 @@
+.jumbotron{
+    display: flex;
+    width:100%;
+    background-color:blanchedalmond;
+}
+
+.header_text{
+    flex:60%;
+}
+
+.header_links{
+    flex:40%;
+}

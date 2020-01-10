@@ -17,6 +17,8 @@ const IndividualStudents = (props) =>{
                       <h5>Father Name: {s.Fathername}</h5>
                       <h5>Mother Name: {s.Mothername}</h5>
                       <h5>Address: {s.address}</h5>
+                      <button>Edit</button>
+                      <button>Delete</button>
                   </div>
               </div>
            </Card>
