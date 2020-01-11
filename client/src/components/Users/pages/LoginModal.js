@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import {Form,FormGroup,Input,Label,Modal,ModalHeader,ModalBody,NavLink,Button} from 'reactstrap';
-import LoginModalLogo from '../images/login.png';
+import LoginModalLogo from '../../../images/login.png';
 import Axios from 'axios';
 
 class LoginModal extends Component{
