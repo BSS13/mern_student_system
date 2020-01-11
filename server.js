@@ -8,7 +8,6 @@ const db=config.get('mongoURI');
 
 
 const app=express();
-app.use(cors());
 //Required Middleware to handle for the form submission and url data handling 
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
@@ -18,9 +17,21 @@ app.use("/api/users",require('./routes/api/users'));
 app.use("/api/students",require('./routes/api/students'));
 
 
-app.get("/",(req,res)=>{
-    res.send("<h1>Hello Server is Running </h1>");
-});
+app.use((error,req,res,next)=>{
+    if(res.headerSent){
+        return next(error);
+    }
+
+    res.status(error.code || 500);
+    res.json({message:error.message}|| 'An Unknown Error Occured!!!!!!');
+})
+
+//To handle all other undefined routes
+app.use((req,res,next)=>{
+    const error = new Error('Could not find any such Route');
+    error.code = 500;
+    throw error;
+})
 //Assigning of the PORT value at which the server will be listening 
 const PORT=process.env.PORT||5000;
 

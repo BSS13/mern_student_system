@@ -5,19 +5,33 @@ const getAllStudents = (req,res)=>{
 
 
 //Function to Create New Student
-const createStudent = (req,res)=>{
+const createStudent = async (req,res)=>{
     const {rollno,name,Fathername,Mothername,DOB,Class,address,contact}=req.body;
 
     if(!rollno || !name || !Fathername || !Mothername || !DOB || !Class  || !address || !contact){
-        return res.status(400).json({msg:'Please Enter Complete Details'});
+        const error = new Error('Please Enter Complete Details');
+        error.code = 400;
+        return next(error);
     }
 
-    Student.findOne({rollno:rollno})
-    .then(student=>{
-        if(student) return res.status(400).json({msg:'Student with the Roll Number Already Exists'});
+    let student;
 
+    try{
+    student = await Student.findOne({rollno:rollno})
+    }catch(err){
+        const error = new Error('Operation to find student failed');
+        error.code = 400;
+        return next(error);
+    }
 
-        const newStudent=new Student({
+    if(student){
+        const error = new Error('Student Already Exists!!');
+        error.code = 401;
+        return next(error);
+    }
+
+    //Add Student Details if student not already Registered
+      const newStudent=new Student({
             rollno,
             name,
             Fathername,
@@ -28,11 +42,16 @@ const createStudent = (req,res)=>{
             contact
         });
 
-        newStudent.save()
-        .then(student=>{
-            return res.json({msg:'Student Registered Successfully with Details:'+student});
-        })
-    })
+         try{
+           await newStudent.save()
+         }catch(err){
+             const error = new Error('Error in executing the operation');
+             error.code = 400;
+             return next(error);
+         }
+
+         res.status(201).json({student:newStudent});
+   
 };
 
 
