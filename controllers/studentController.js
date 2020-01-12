@@ -56,16 +56,27 @@ const createStudent = async (req,res)=>{
 
 
 //Function to delete Student
-const deleteStudent =(req,res)=>{
+const deleteStudent = async (req,res)=>{
     
-    res.status(200).json({msg:`Roll Number ${req.params.rollno} is received`});
-   
-    Student.findOne({rollno:req.params.rollno})
-    .then(student=>student
-       .remove()
-       .then(()=>res.json({msg:`Successfully Deleted ${req.params.rollno}`}))
-       .catch(err=>res.status(404).json({msg:'Erro in Query Execution'})))
-   .catch(err=>res.status(404).json({success:false}))
+    const rollno= req.params.rollno;
+    let student;
+    try{
+     student= await Student.findById(rollno);
+    }catch(err){
+        const error = new Error('Error in code execution');
+        error.code = 500;
+        return next(error);
+    }
+
+    try{
+        await student.remove();
+    }catch(err){
+        const error = new Error('Error in executing Delete Logic');
+        error.code = 500;
+        return next(error);
+    }
+
+    res.status(200).json({message:'Successfully Deleted'});
 
 };
 
